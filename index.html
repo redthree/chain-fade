@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Chain Fade - Demo</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/estilos.css">
+
+	<!-- jQuery -->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+
+	<!-- Chain Fade -->
+	<script type="text/javascript" src="js/chain_fade.js"></script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+	<div id="inner">
+
+		<header>
+			<h1>Chain Fade - Demo</h1>
+		</header>
+		
+		<div class="listadoOpciones">
+			<!-- Default -->
+			<section>
+
+				<div class="demoContainer">
+					<div class="demo default clearfix">
+						<span class="box"></span>
+						<span class="box"></span>
+						<span class="box"></span>
+						<span class="box"></span>	
+					</div><!-- fin demo -->
+
+					<pre>$('.box').chainFade();</pre>
+
+					<p class="btn">&#9658;</p>
+
+				</div>
+
+			</section>
+
+			<!-- toThe: bottom -->
+			<section>
+
+				<div class="demoContainer">
+					<div class="demo toThebottom clearfix">
+						<span class="box"></span>
+						<span class="box"></span>
+						<span class="box"></span>
+						<span class="box"></span>	
+					</div><!-- fin demo -->
+
+<pre>
+$('.box').chainFade({
+  <span class="opciones">toThe: 'bottom'</span>
+});
+</pre>
+
+					<p class="btn">&#9658;</p>
+				</div>
+
+			</section>
+
+			<!-- speed: 1000  -->
+			<section>
+
+				<div class="demoContainer">
+					<div class="demo speedLeft clearfix">
+						<span class="box"></span>
+						<span class="box"></span>
+						<span class="box"></span>
+						<span class="box"></span>	
+					</div><!-- fin demo -->
+
+<pre>
+$('.box').chainFade({
+  <span class="opciones">speed: 100,
+  interval: 70,
+  fixedHeight: true</span>
+});
+</pre>
+
+					<p class="btn">&#9658;</p>
+
+				</div>
+
+			</section>
+
+			<!-- speed: 1000  -->
+			<section>
+
+				<div class="demoContainer">
+					<div class="demo intervalDistance clearfix">
+						<span class="box"></span>
+						<span class="box"></span>
+						<span class="box"></span>
+						<span class="box"></span>	
+					</div><!-- fin demo -->
+
+<pre>
+$('.box').chainFade({
+  <span class="opciones">interval: 1500, 
+  distance: 2000</span>
+});
+</pre>
+
+					<p class="btn">&#9658;</p>
+
+				</div>
+
+			</section>
+
+		</div><!-- fin listadoOpciones -->
+
+	</div><!-- fin inner -->
+
+	<!-- Footer -->
+	<footer>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, vitae.</p>
+	</footer>
+
+</div><!-- fin wrapper -->
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$('section').chainFade({
+			speed: 500,
+			interval: 50
+		});
+
+		$('.btn', $(this)).click(function(){
+			var op_startAt = 0,
+	        op_interval = 300,
+	        op_speed = 700,
+	        op_fx = 'fade',
+	        op_distance = 50,
+	        op_direction = 'forward',
+	        op_toThe = 'top',
+	        op_fixedHeight = false,        
+	        op_messages = true,
+	        op,
+	        cont = $(this).parent(),
+	        opciones = $(this).siblings('pre').find('span.opciones').text(),
+	        opciones_arr = opciones.split(',');
+
+			for(var i = 0; i < opciones_arr.length; i++){
+				op = opciones_arr[i].split(':');
+				if(op[0].trim() === 'startAt'){op_startAt = parseInt(op[1].trim());}
+        if(op[0].trim() === 'interval'){op_interval = parseInt(op[1].trim());}
+        if(op[0].trim() === 'speed'){op_speed = parseInt(op[1].trim());}
+        if(op[0].trim() === 'fx'){op_fx = op[1].trim();}
+        if(op[0].trim() === 'distance'){op_distance = parseInt(op[1].trim());}
+        if(op[0].trim() === 'direction'){op_direction = op[1].trim();}
+        if(op[0].trim() === 'toThe'){op_toThe = op[1].trim().replace(/["']/g, "");}
+        if(op[0].trim() === 'fixedHeight'){
+        	if(op[1].trim() === 'true'){
+        		op_fixedHeight = true;
+        	} else {
+        		op_fixedHeight = false;
+        	}
+        }
+        if(op[0].trim() === 'messages'){
+        	if(op[1].trim() === 'true'){
+        		op_messages = true;
+        	} else {
+        		op_messages = false;
+        	}
+        }
+			}
+			
+			cont.find('.box').chainFade({
+				startAt: op_startAt,
+				interval: op_interval,
+				speed: op_speed,
+				fx: op_fx,
+				distance: op_distance,
+				direction: op_direction,
+				toThe: op_toThe,
+				fixedHeight: op_fixedHeight,        
+				messages: op_messages
+			});
+
+		});
+	});
+
+</script>
+
+</body>
+</html>
